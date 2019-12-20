@@ -192,20 +192,17 @@ function GetBash($chat_id)
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$server_output = curl_exec ($ch);
 	curl_close ($ch);
-	//$message = strip_tags($server_output);
+	$message = strip_tags($server_output);
 	
-	parse_str($message, $output);
-	foreach ($output as $it)
-		
 	//$message = str_replace('&quot;', '"',$message);
 	//$message = str_replace('&', '"',$message);
 	//$message = str_replace("Больше на bash.im!';
 //document.write(borq);", ' ',$message);
 	//$message = str_replace("var borq='';
 //borq += '#", '',$message);
-	//$message = substr($message,15);
-	//$message = str_replace("]", "",$message);
-		sendMessage($chat_id,$it);// $message);
+	$message = substr($message,15);
+	$message = str_replace("]", "",$message);
+	sendMessage($chat_id, $message);
 }
 
 // Последние 3 новости Томска
