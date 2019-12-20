@@ -192,7 +192,7 @@ function GetBash($chat_id)
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$server_output = curl_exec ($ch);
 	curl_close ($ch);
-	$message = strip_tags($server_output);
+	//$message = strip_tags($server_output);
 	
 	parse_str($message, $output);
 	foreach ($output as $it)
