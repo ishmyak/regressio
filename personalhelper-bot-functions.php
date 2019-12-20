@@ -193,14 +193,14 @@ function GetBash($chat_id)
 	$server_output = curl_exec ($ch);
 	curl_close ($ch);
 	$message = strip_tags($server_output);
-	$message = str_replace('&quot;', '"',$message);
-	$message = str_replace('&', '"',$message);
-	$message = str_replace("Больше на bash.im!';
-document.write(borq);", ' ',$message);
-	$message = str_replace("var borq='';
-borq += '#", '',$message);
-	$message = substr($message,15);
-	$message = str_replace("]", "",$message);
+	//$message = str_replace('&quot;', '"',$message);
+	//$message = str_replace('&', '"',$message);
+	//$message = str_replace("Больше на bash.im!';
+//document.write(borq);", ' ',$message);
+	//$message = str_replace("var borq='';
+//borq += '#", '',$message);
+	//$message = substr($message,15);
+	//$message = str_replace("]", "",$message);
 	sendMessage($chat_id, $message);
 }
 
