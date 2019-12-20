@@ -184,7 +184,7 @@ function StartGenericMenu ($chat_id)
 function GetBash($chat_id)
 {
 	$ch = curl_init();
-	$url= 'http://bash.im/forweb/?u';
+	$url= 'https://bash.im/forweb/?u';
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: text/javascript'));
