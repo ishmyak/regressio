@@ -25,7 +25,7 @@ switch($message)
 	case "Убрать клавиатуру":
 		DeleteGenericMenu ($chat_id);
 		break;
-	case "Bash":
+	case "Баш":
 	case "/bash":
 		GetBash($chat_id);
 		break;
