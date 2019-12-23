@@ -212,7 +212,7 @@ function GetNewsTomsk($chat_id)
 {
 	$ch = curl_init();
 	// $url= 'http://www.tv2.tomsk.ru/rss/news/3'; // не работает
-	$url = 'http://tv2.today/rss.xml';
+	$url = 'https://news.vtomske.ru/rss/js/5/5/tomsk'; // 5 новостей томска
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/xml"));
