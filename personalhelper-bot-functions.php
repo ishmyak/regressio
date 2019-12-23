@@ -192,18 +192,8 @@ function GetBash($chat_id)
 	//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	//$server_output = curl_exec ($ch);
 	//curl_close ($ch);
-	String parsedStream;
-        var parsedPage = await WebDataCache.GetAsync(new Uri(String.Format("https://bash.im/forweb/?u")));
-
-        var buffer = await FileIO.ReadBufferAsync(parsedPage);
-        using (var dr = DataReader.FromBuffer(buffer))
-        {
-            var bytes1251 = new Byte[buffer.Length];
-            dr.ReadBytes(bytes1251);
-
-            parsedStream = Encoding.GetEncoding("Windows-1251").GetString(bytes1251, 0, bytes1251.Length);
-        }
-	$message = parsedStream;
+	
+	$message = file_get_html('https://bash.im/forweb/?u')->plaintext;
 	//$message = strip_tags($server_output);
 	
 	//$message = str_replace('&quot;', '"',$message);
