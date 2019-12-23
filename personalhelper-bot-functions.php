@@ -183,16 +183,28 @@ function StartGenericMenu ($chat_id)
 // Случайный БАШ
 function GetBash($chat_id)
 {
-	$ch = curl_init();
-	$url= 'https://bash.im/forweb/?u';
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: text/javascript'));
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$server_output = curl_exec ($ch);
-	curl_close ($ch);
-	$message = strip_tags($server_output);
+	//$ch = curl_init();
+	//$url= 'https://bash.im/forweb/?u';
+	//curl_setopt($ch, CURLOPT_URL, $url);
+	//curl_setopt($ch, CURLOPT_POST, 1);
+	//curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: text/javascript'));
+	//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	//$server_output = curl_exec ($ch);
+	//curl_close ($ch);
+	String parsedStream;
+        var parsedPage = await WebDataCache.GetAsync(new Uri(String.Format("https://bash.im/forweb/?u")));
+
+        var buffer = await FileIO.ReadBufferAsync(parsedPage);
+        using (var dr = DataReader.FromBuffer(buffer))
+        {
+            var bytes1251 = new Byte[buffer.Length];
+            dr.ReadBytes(bytes1251);
+
+            parsedStream = Encoding.GetEncoding("Windows-1251").GetString(bytes1251, 0, bytes1251.Length);
+        }
+	$message = parsedStream;
+	//$message = strip_tags($server_output);
 	
 	//$message = str_replace('&quot;', '"',$message);
 	//$message = str_replace('&', '"',$message);
@@ -200,8 +212,8 @@ function GetBash($chat_id)
 //document.write(borq);", ' ',$message);
 	//$message = str_replace("var borq='';
 //borq += '#", '',$message);
-	$message = substr($message,15);
-	$message = str_replace("]", "",$message);
+	//$message = substr($message,15);
+	//$message = str_replace("]", "",$message);
 	sendMessage($chat_id, $message);
 }
 
