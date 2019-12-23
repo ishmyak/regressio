@@ -193,7 +193,7 @@ function GetBash($chat_id)
 	//$server_output = curl_exec ($ch);
 	//curl_close ($ch);
 	
-	$message = file_get_html('https://bash.im/forweb/?u')->plaintext;
+	$message = 'https://bash.im/forweb/?u';
 	//$message = strip_tags($server_output);
 	
 	//$message = str_replace('&quot;', '"',$message);
