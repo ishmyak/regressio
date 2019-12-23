@@ -211,7 +211,8 @@ function GetBash($chat_id)
 function GetNewsTomsk($chat_id)
 {
 	$ch = curl_init();
-	$url= 'http://www.tv2.tomsk.ru/rss/news/3';
+	// $url= 'http://www.tv2.tomsk.ru/rss/news/3'; // не работает
+	$url = 'http://tv2.today/rss.xml';
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/xml"));
