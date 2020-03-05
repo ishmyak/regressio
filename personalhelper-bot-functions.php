@@ -101,10 +101,12 @@ if ($chat_id != 112476048)
  *          Функции             *
  ********************************/
 // Отправка сообщения пользователю
+
 function sendMessage($chat_id, $message) 
 {
 	file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . urlencode($message));
 }
+
 // Отправка фото пользователю
 function	sendPhoto($chat_id,$urlphoto)
 {
