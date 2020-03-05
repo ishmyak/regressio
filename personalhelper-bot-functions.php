@@ -231,7 +231,7 @@ function GetNewsTomsk($chat_id)
 		$otvet =  $it->pubDate ."\n". $it->title . ' ' . $it->link ;
 		$otvet = str_replace('+0600', '',$otvet);
 		sendMessage($chat_id, $otvet);
-		if ($i > 2)
+		if ($i > 1)
 			break;
 		$i++;
 	}
@@ -322,7 +322,7 @@ function GetCurrentHolyday($chat_id)
 function GetCurrentAnek($chat_id)
 {
 	$xml = simplexml_load_string('http://rzhunemogu.ru/Rand.aspx?CType=1');
-	$otvet = $xml->root->content;
+	$otvet = $xml;//->root->content;
 	sendMessage($chat_id, $otvet);
 }
 // Анекдот
