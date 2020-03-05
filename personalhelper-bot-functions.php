@@ -212,7 +212,8 @@ function GetNewsTomsk($chat_id)
 {
 	$ch = curl_init();
 	// $url= 'http://www.tv2.tomsk.ru/rss/news/3'; // не работает
-	$url = 'https://news.vtomske.ru/rss/js/5/5/tomsk'; // 5 новостей томска
+	// $url = 'https://news.vtomske.ru/rss/js/5/5/tomsk'; // 5 новостей томска
+	$url= 'https://tv2.today/rss.xml'; // новости томска
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/xml"));
@@ -313,19 +314,8 @@ function GetCurrentHolyday($chat_id)
 // Анекдот
 function GetCurrentAnek($chat_id)
 {
-	$url='http://rzhunemogu.ru/Rand.aspx?CType=1';
-	//$Anek = file_get_contents($url);
-	//$message = strip_tags($Anek);
-	if($url)
-	{
-		$xml = simplexml_load_file($url);
-		if ($xml)
-			$message = $xml->Content;
-		else
-			$message = $xml;
-	}
-	else
-		$message = "Ресурс недоступен";
+	$xml = simplexml_load_string('http://rzhunemogu.ru/Rand.aspx?CType=1');
+	$message = $xml->Content;
 	sendMessage($chat_id, $message);
 }
 // Анекдот
