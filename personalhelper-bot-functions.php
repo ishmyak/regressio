@@ -323,11 +323,7 @@ function GetCurrentZitata($chat_id)
 {
 	$url='http://api.forismatic.com/api/1.0/?method=getQuote&format=html';
 	$Citata = file_get_contents($url);
-	if($url)
-		$Citata = file_get_contents($url);
-		$message = strip_tags($Citata);
-	else
-		$message = "Ресурс недоступен" + $Anek;
+	$message = strip_tags($Citata);
 	sendMessage($chat_id, $message);
 }
 
@@ -338,7 +334,7 @@ function GetCurrentDemo($chat_id)
 	$cur_ph = file_get_contents ($url);
 	preg_match_all('#src="([^"]+)"#i', $cur_ph, $_curURL); 
 	foreach($_curURL[1] as $link)
-	 sendMessage($chat_id, $link);
+		 sendMessage($chat_id, $link);
 	//sendPhoto($chat_id,$link); //неработает!!!
 }
 
