@@ -314,8 +314,10 @@ function GetCurrentHolyday($chat_id)
 function GetCurrentAnek($chat_id)
 {
 	$url='http://rzhunemogu.ru/Rand.aspx?CType=1';
-	$Anek = file_get_contents($url);
-	$message = strip_tags($Anek);
+	//$Anek = file_get_contents($url);
+	//$message = strip_tags($Anek);
+	$xml = simplexml_load_file($url);
+	$message = $xml->Content;
 	sendMessage($chat_id, $message);
 }
 // Анекдот
