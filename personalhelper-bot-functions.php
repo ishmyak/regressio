@@ -316,16 +316,26 @@ function GetCurrentAnek($chat_id)
 	$url='http://rzhunemogu.ru/Rand.aspx?CType=1';
 	//$Anek = file_get_contents($url);
 	//$message = strip_tags($Anek);
-	$xml = simplexml_load_file($url);
-	$message = $xml->Content;
+	if($url)
+	{
+		$xml = simplexml_load_file($url);
+		$message = $xml->Content;
+	}
+	else
+		$message = "Ресурс недоступен";
 	sendMessage($chat_id, $message);
 }
 // Анекдот
 function GetCurrentZitata($chat_id)
 {
 	$url='http://api.forismatic.com/api/1.0/?method=getQuote&format=html';
-	$Anek = file_get_contents($url);
-	$message = strip_tags($Anek);
+	if($url)
+	{
+		$Anek = file_get_contents($url);
+		$message = strip_tags($Anek);
+	}
+	else
+		$message = "Ресурс недоступен";
 	sendMessage($chat_id, $message);
 }
 
