@@ -319,7 +319,10 @@ function GetCurrentAnek($chat_id)
 	if($url)
 	{
 		$xml = simplexml_load_file($url);
-		$message = $xml->Content;
+		if ($xml)
+			$message = $xml->Content;
+		else
+			$message = $xml;
 	}
 	else
 		$message = "Ресурс недоступен";
@@ -329,13 +332,12 @@ function GetCurrentAnek($chat_id)
 function GetCurrentZitata($chat_id)
 {
 	$url='http://api.forismatic.com/api/1.0/?method=getQuote&format=html';
+	$Citata = file_get_contents($url);
 	if($url)
-	{
-		$Anek = file_get_contents($url);
-		$message = strip_tags($Anek);
-	}
+		$Citata = file_get_contents($url);
+		$message = strip_tags($Citata);
 	else
-		$message = "Ресурс недоступен";
+		$message = "Ресурс недоступен" + $Anek;
 	sendMessage($chat_id, $message);
 }
 
