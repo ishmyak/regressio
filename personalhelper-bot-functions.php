@@ -231,9 +231,9 @@ function GetNewsTomsk($chat_id)
 		$otvet =  $it->pubDate ."\n". $it->title . ' ' . $it->link ;
 		$otvet = str_replace('+0600', '',$otvet);
 		sendMessage($chat_id, $otvet);
-		$i++;
 		if ($i >= 3)
 			break;
+		$i++;
 	}
 }
 
@@ -322,16 +322,16 @@ function GetCurrentHolyday($chat_id)
 function GetCurrentAnek($chat_id)
 {
 	$xml = simplexml_load_string('http://rzhunemogu.ru/Rand.aspx?CType=1');
-	$message = $xml->Content;
-	sendMessage($chat_id, $message);
+	$otvet = $xml->root->content;
+	sendMessage($chat_id, $otvet);
 }
 // Анекдот
 function GetCurrentZitata($chat_id)
 {
 	$url='http://api.forismatic.com/api/1.0/?method=getQuote&format=html';
 	$Citata = file_get_contents($url);
-	$message = strip_tags($Citata);
-	sendMessage($chat_id, $message);
+	$otvet = strip_tags($Citata);
+	sendMessage($chat_id, $otvet);
 }
 
 //Демотиватор
