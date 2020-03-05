@@ -228,12 +228,12 @@ function GetNewsTomsk($chat_id)
 	$i = 0;
 	foreach ($news->channel->item as $it)
 	{ 
-		++$i;
 		$otvet =  $it->pubDate ."\n". $it->title . ' ' . $it->link ;
 		$otvet = str_replace('+0600', '',$otvet);
 		sendMessage($chat_id, $otvet);
-	 	if ($i > 5)
-			break 1;
+		$i++;
+		if ($i >= 3)
+			break;
 	}
 }
 
