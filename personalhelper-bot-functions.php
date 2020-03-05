@@ -225,11 +225,15 @@ function GetNewsTomsk($chat_id)
 	//curl_close ($ch);
 	//$xml = new SimpleXMLElement($server_output);
 	$news = simplexml_load_string(file_get_contents($rss));
+	$i = 0;
 	foreach ($news->channel->item as $it)
-	{
+	{ 
+		++$i;
 		$otvet =  $it->pubDate ."\n". $it->title . ' ' . $it->link ;
 		$otvet = str_replace('+0600', '',$otvet);
 		sendMessage($chat_id, $otvet);
+	 	if (i > 5)
+			break 1;
 	}
 }
 
