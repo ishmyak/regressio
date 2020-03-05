@@ -212,19 +212,20 @@ function GetBash($chat_id)
 // Последние 3 новости Томска
 function GetNewsTomsk($chat_id)
 {
-	$ch = curl_init();
+	//$ch = curl_init();
 	// $url= 'http://www.tv2.tomsk.ru/rss/news/3'; // не работает
 	// $url = 'https://news.vtomske.ru/rss/js/5/5/tomsk'; // 5 новостей томска
-	$url= 'https://tv2.today/rss.xml'; // новости томска
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/xml"));
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$server_output = curl_exec ($ch);
-	curl_close ($ch);
-	$xml = new SimpleXMLElement($server_output);
-	foreach ($xml->channel->item as $it) 
+	$rss= 'https://tv2.today/rss.xml'; // новости томска
+	//curl_setopt($ch, CURLOPT_URL, $url);
+	//curl_setopt($ch, CURLOPT_POST, 1);
+	//curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/xml"));
+	//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	//curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	//$server_output = curl_exec ($ch);
+	//curl_close ($ch);
+	//$xml = new SimpleXMLElement($server_output);
+	$news = simplexml_load_string(file_get_contents($rss));
+	foreach ($news->channel->item as $it)
 	{
 		$otvet =  $it->pubDate ."\n". $it->title . ' ' . $it->link ;
 		$otvet = str_replace('+0600', '',$otvet);
