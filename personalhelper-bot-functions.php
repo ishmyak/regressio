@@ -313,11 +313,9 @@ function GetCurrentHolyday($chat_id)
 // Анекдот
 function GetCurrentAnek($chat_id)
 {
-	$url='http://allanecdots.ru/vidgets/allanecdots.js?n=1&nocensored=1';
+	$url='http://rzhunemogu.ru/Rand.aspx?CType=1';
 	$Anek = file_get_contents($url);
 	$message = strip_tags($Anek);
-	$message = str_replace("var s = 0; for ( i=0; i < document.links.length; i++ ){ if (document.links[i].hostname=='allanecdots.ru') s=s+1;} if (s>0) document.getElementById('allanecdots').innerHTML='", '',$message);
-	$message = str_replace("';", '',$message);
 	sendMessage($chat_id, $message);
 }
 // Анекдот
