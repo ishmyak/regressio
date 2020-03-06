@@ -309,11 +309,10 @@ function GetCurrentHolyday($chat_id)
 // Анекдот
 function GetCurrentAnek($chat_id)
 {
-	echo "chatID ",$chat_id;
-	$xml = simplexml_load_string('http://rzhunemogu.ru/Rand.aspx?CType=1');
-	echo $xml;
-	$otvet = $xml->content;
-	echo $otvet;
+	//$xml = simplexml_load_string('http://rzhunemogu.ru/Rand.aspx?CType=1');
+	$html = file_get_html('http://rzhunemogu.ru/Rand.aspx?CType=1');
+	$es = $html->find('span class="text"');
+	$otvet = $es;//$xml->content;
 	sendMessage($chat_id, $otvet);
 }
 // Анекдот
