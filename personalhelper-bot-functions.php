@@ -216,11 +216,10 @@ function GetNewsTomsk($chat_id)
 	$news = simplexml_load_string(file_get_contents($rss));
 	$i = 0;
 	$testmessage="<b>Hello</b>\n<i>How are you?</i>";
-	$testmes=$website."/sendMessage?chat_id=".$chatId."&parse_mode=html&text=".urlencode($testmessage);
 	file_get_contents($testmes);
 	foreach ($news->channel->item as $it)
 	{ 
-		$otvet = '*' . $it->title . '* ' . $it->link ."\n". $it->pubDate . file_get_contents($testmes);;
+		$otvet = '*' . $it->title . '* ' . $it->link ."\n". $it->pubDate . "&parse_mode=html&text=".urlencode($testmessage);
 		$otvet = str_replace('+0600', '',$otvet);
 		sendMessage($chat_id, $otvet);
 		if ($i > 3)
