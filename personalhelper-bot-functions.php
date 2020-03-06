@@ -303,7 +303,8 @@ function GetCurrentHolyday($chat_id)
 	$otvet= "*" . "Праздники сегодня, праздники завтра..." . "*";
 	$holyday = simplexml_load_string(file_get_contents('http://www.calend.ru/img/export/calend.rss'));
 	foreach ($holyday->channel->item as $it)
-		$otvet = $otvet . "\n 📆 " . $it->title;
+		$otvet = $otvet . "\n 📆 " . $it->title . '. [читать](' . $it->link . ')';
+		
 	sendMessage($chat_id, $otvet);
 }
 
