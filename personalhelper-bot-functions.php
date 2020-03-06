@@ -228,7 +228,7 @@ function GetNewsTomsk($chat_id)
 // Прогноз погоды
 function GetWeatherTomsk($chat_id)
 {
-	$otvet= "*" . "По данным Гидрометцентра России, по городу Томску" . "*";
+	$otvet= "По данным Гидрометцентра России, по городу Томску";
 	$cur_weather = simplexml_load_string(file_get_contents ("http://meteoinfo.ru/rss/forecasts/29430"));
 	foreach ($cur_weather->channel->item as $it)
 	$otvet = $otvet ."\n\t". $it->title . ': ' . $it->description;
@@ -309,11 +309,8 @@ function GetCurrentHolyday($chat_id)
 // Анекдот
 function GetCurrentAnek($chat_id)
 {
-	$xml = simplexml_load_string('http://rzhunemogu.ru/Rand.aspx?CType=1');
-    $json = json_encode($xml);
-    $array = json_decode($json,TRUE);
-	//$es = $html->find('span class="text"');
-	$otvet = $array;//$xml->content;
+	$xml = simplexml_load_string(file_get_contents ("http://rzhunemogu.ru/Rand.aspx?CType=1"));
+	$otvet = $xml->content;
 	sendMessage($chat_id, $otvet);
 }
 // Анекдот
