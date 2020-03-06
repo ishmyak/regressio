@@ -216,7 +216,7 @@ function GetNewsTomsk($chat_id)
 	$i = 0;
 	foreach ($news->channel->item as $it)
 	{ 
-		$otvet = $it->title . ' ' . $it->link ."\n". $it->pubDate;
+		$otvet = '*' .$it->title . '* ' . $it->link ."\n". $it->pubDate;
 		$otvet = str_replace('+0600', '',$otvet);
 		sendMessage($chat_id, $otvet);
 		if ($i > 3)
@@ -228,7 +228,7 @@ function GetNewsTomsk($chat_id)
 // Прогноз погоды
 function GetWeatherTomsk($chat_id)
 {
-	$otvet='По данным Гидрометцентра России, по городу Томску';
+	$otvet='*По данным Гидрометцентра России, по городу Томску*';
 	$cur_weather = simplexml_load_string(file_get_contents ("http://meteoinfo.ru/rss/forecasts/29430"));
 	foreach ($cur_weather->channel->item as $it)
 	$otvet = $otvet ."\n\t". $it->title . ': ' . $it->description;
@@ -246,7 +246,7 @@ function GetCurrentCurrency($chat_id)
 	$cur_date = $_cur_date[1][0];
 	$usd = $_usd[2][0];
 	$eur = $_eur[2][0];
-	$otvet = 'Курсы валют ЦБ РФ на '.$cur_date."\n".'  1 USD: '.$usd.' руб.'."\n".'  1 EUR: '.$eur.' руб.';
+	$otvet = '*Курсы валют ЦБ РФ на '.$cur_date."* \n".'  1 USD: '.$usd.' руб.'."\n".'  1 EUR: '.$eur.' руб.';
 	sendMessage($chat_id, $otvet); 
 }
 
@@ -299,10 +299,10 @@ function StartHoroscopeMenu($chat_id)
 // Праздник
 function GetCurrentHolyday($chat_id)
 {
-	$otvet='Праздники сегодня, праздники завтра...';
+	$otvet= "*" . "Праздники сегодня, праздники завтра..." . "*";
 	$holyday = simplexml_load_string(file_get_contents('http://www.calend.ru/img/export/calend.rss'));
 	foreach ($holyday->channel->item as $it)
-		$otvet = $otvet ."\n *". $it->title ."*";
+		$otvet = $otvet . "\n" . $it->title;
 	sendMessage($chat_id, $otvet);
 }
 
