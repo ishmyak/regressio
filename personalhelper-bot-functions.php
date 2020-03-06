@@ -246,7 +246,7 @@ function GetCurrentCurrency($chat_id)
 	$cur_date = $_cur_date[1][0];
 	$usd = $_usd[2][0];
 	$eur = $_eur[2][0];
-	$otvet = '*Курсы валют ЦБ РФ на '.$cur_date."* \n".'  1 USD: '.$usd.' руб.'."\n".'  1 EUR: '.$eur.' руб.';
+	$otvet = '*Курсы валют ЦБ РФ на '.$cur_date."* \n".'📈 1 USD: '.$usd.' руб.'."\n".'📈 1 EUR: '.$eur.' руб.';
 	sendMessage($chat_id, $otvet); 
 }
 
