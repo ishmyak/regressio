@@ -216,7 +216,7 @@ function GetNewsTomsk($chat_id)
 	$i = 0;
 	foreach ($news->channel->item as $it)
 	{ 
-		$otvet = '🗒 *' .$it->title . '* ' . $it->link ."\n _" . $it->pubDate . '_';
+		$otvet = '🗒 *' . $it->title . '* \n' . $it->yandex:full-text . '\n _'. $it->pubDate . '_'. '[читать](' .$it->link .')';
 		$otvet = str_replace('+0600', '',$otvet);
 		sendMessage($chat_id, $otvet);
 		if ($i > 3)
