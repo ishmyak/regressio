@@ -232,7 +232,7 @@ function GetWeatherTomsk($chat_id)
 	$cur_weather = simplexml_load_string(file_get_contents("http://meteoinfo.ru/rss/forecasts/29430"));
 	foreach ($cur_weather->channel->item as $it)
 		$otvet = $otvet . "\n\t" . $it->title . ': ' . $it->description;
-	$otvet = str_replace('Томск, ', '🗓 на ',$otvet);
+	$otvet = str_replace('Томск, ', '🗓 ',$otvet);
 	sendMessage($chat_id, $otvet);
 }
 
