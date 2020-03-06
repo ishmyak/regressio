@@ -330,8 +330,8 @@ function GetCurrentDemo($chat_id)
 	$cur_ph = file_get_contents ($url);
 	preg_match_all('#src="([^"]+)"#i', $cur_ph, $_curURL); 
 	foreach($_curURL[1] as $link)
-		 sendMessage($chat_id, $link);
-	//sendPhoto($chat_id,$link); //неработает!!!
+	//	 sendMessage($chat_id, $link);
+	sendPhoto($chat_id,$link); //неработает!!!
 }
 
 ?>
