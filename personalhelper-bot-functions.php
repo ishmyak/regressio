@@ -104,7 +104,7 @@ if ($chat_id != 112476048)
 
 function sendMessage($chat_id, $message) 
 {
-	file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . urlencode($message));
+	file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&parse_mode=Markdown' . '&text=' . urlencode($message));
 }
 
 // Отправка фото пользователю
@@ -153,7 +153,7 @@ function StartGenericMenu ($chat_id)
 {
 	$lista=
 		[ 
-			["Новости", "Погода", "Курс валют"],
+			["*Новости*", "Погода", "Курс валют"],
 			["Праздники", "Баш", "Гороскоп"],
 			["Анекдот", "Афоризм", "Демотиватор"],
 		];
@@ -212,14 +212,11 @@ function GetBash($chat_id)
 // Последние 3 новости Томска
 function GetNewsTomsk($chat_id)
 {
-	$rss= 'https://tv2.today/rss.xml'; // новости томска
-	$news = simplexml_load_string(file_get_contents($rss));
+	$news = simplexml_load_string(file_get_contents('https://tv2.today/rss.xml')); // новости томска
 	$i = 0;
-	$testmessage="<b>Hello</b>\n<i>How are you?</i>";
-	file_get_contents($testmes);
 	foreach ($news->channel->item as $it)
 	{ 
-		$otvet = '*' . $it->title . '* ' . $it->link ."\n". $it->pubDate . "&parse_mode=html&text=".urlencode($testmessage);
+		$otvet = $it->title . ' ' . $it->link ."\n". $it->pubDate;
 		$otvet = str_replace('+0600', '',$otvet);
 		sendMessage($chat_id, $otvet);
 		if ($i > 3)
