@@ -153,7 +153,7 @@ function StartGenericMenu ($chat_id)
 {
 	$lista=
 		[ 
-			["*Новости*", "Погода", "Курс валют"],
+			["Новости", "Погода", "Курс валют"],
 			["Праздники", "Баш", "Гороскоп"],
 			["Анекдот", "Афоризм", "Демотиватор"],
 		];
@@ -302,7 +302,7 @@ function GetCurrentHolyday($chat_id)
 	$otvet='Праздники сегодня, праздники завтра...';
 	$holyday = simplexml_load_string(file_get_contents('http://www.calend.ru/img/export/calend.rss'));
 	foreach ($holyday->channel->item as $it)
-		$otvet = $otvet ."\n". $it->title;
+		$otvet = $otvet ."\n *". $it->title ."*";
 	sendMessage($chat_id, $otvet);
 }
 
