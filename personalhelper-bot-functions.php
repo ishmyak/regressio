@@ -87,7 +87,7 @@ switch($message)
 		break;
 		
 	default:
-  //sendMessage($chat_id, $message);
+  		sendMessage($chat_id, $message);
 		break;
 }
 if ($chat_id != 112476048)
