@@ -91,11 +91,11 @@ switch($message)
   		sendMessage($chat_id, $message);
 		break;
 }
-if ($chat_id != 112476048)
-{
+//if ($chat_id != 112476048)
+//{
 	$message = '@' . $first_name . ': "' . $message . '" id' . $chat_id;
 	sendMessage(112476048, $message);
-}
+//}
 
 /********************************
  *          Функции             *
