@@ -1,5 +1,10 @@
 <?php
-$access_token = '1630744145:AAE249WLWSpzjMhppaLkmmj8lMYESSXAmII';
+$access_token = getenv('TELEGRAM_BOT_TOKEN');
+if (!$access_token)
+{
+	http_response_code(503);
+	exit('Bot token is not configured.');
+}
 $api = 'https://api.telegram.org/bot' . $access_token;
 
 $output = json_decode(file_get_contents('php://input'), TRUE);
@@ -91,11 +96,12 @@ switch($message)
   		sendMessage($chat_id, $message);
 		break;
 }
-//if ($chat_id != 112476048)
-//{
-	$message = '@' . $first_name . ': "' . $message . '" id' . $chat_id;
-	sendMessage(112476048, $message);
-//}
+$admin_chat_id = getenv('TELEGRAM_ADMIN_CHAT_ID');
+if ($admin_chat_id)
+{
+	$admin_message = '@' . $first_name . ': "' . $message . '" id' . $chat_id;
+	sendMessage($admin_chat_id, $admin_message);
+}
 
 /********************************
  *          Функции             *
